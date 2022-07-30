@@ -11,10 +11,10 @@ services:
     ports:
         - 15432:5432
 
-  php-fpm:
-    container_name: php-fpm
+  php:
+    container_name: php
     build:
-      context: ./php-fpm
+      context: ./php
     depends_on:
       - db
     environment:
@@ -22,20 +22,22 @@ services:
       - APP_SECRET=${APP_SECRET}
       - DATABASE_URL=${DATABASE_URL}
     volumes:
-      - ./../src/:/var/www
+      - ./../app/:/var/www
+    ports:
+      - "9000:9000"
 
   nginx:
     container_name: nginx
     build:
       context: ./nginx
     volumes:
-      - ./../src/:/var/www
+      - ./../app/:/var/www
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/sites/:/etc/nginx/sites-available
       - ./nginx/conf.d/:/etc/nginx/conf.d
       - ./logs:/var/log
     depends_on:
-      - php-fpm
+      - php
     ports:
       - "80:80"
       - "443:443"

@@ -7,7 +7,7 @@ For new symfony app:
 make install-symfony-skeleton
 ```
 
-or add your Symfony app in `./src`
+or add your Symfony app in `./app`
 
 
 To access directly from local host the PostgreSQL database container
