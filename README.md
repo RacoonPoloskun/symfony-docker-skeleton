@@ -4,7 +4,7 @@
 
 For new symfony app:
 ```bash
-make install-symfony-skeleton
+make fast-start
 ```
 
 or add your Symfony app in `./app`
